@@ -1,33 +1,18 @@
 package com.custardsource.parfait;
 
-import java.io.File;
-import java.io.IOException;
-import java.lang.instrument.Instrumentation;
-import java.lang.management.ManagementFactory;
-import java.lang.management.RuntimeMXBean;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.measure.unit.Unit;
-
-import com.custardsource.parfait.DynamicMonitoringView;
-import com.custardsource.parfait.MonitorableRegistry;
 import com.custardsource.parfait.pcp.PcpMonitorBridge;
-import com.custardsource.parfait.dxm.IdentifierSourceSet;
-import com.custardsource.parfait.dxm.PcpMmvWriter;
-import com.custardsource.parfait.dxm.PcpMmvWriter.MmvFlag;
-import com.custardsource.parfait.dxm.MetricName;
-import com.custardsource.parfait.dxm.semantics.Semantics;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.lang.instrument.Instrumentation;
+import java.lang.management.ManagementFactory;
+import java.lang.management.RuntimeMXBean;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ParfaitAgent {
     private final static Logger logger = LoggerFactory.getLogger(ParfaitAgent.class);
@@ -81,7 +66,7 @@ public class ParfaitAgent {
             ApplicationContext context = new ClassPathXmlApplicationContext("monitoring.xml");
             MonitorableRegistry metrics = (MonitorableRegistry)context.getBean("monitorableRegistry");
             PcpMonitorBridge bridge = (PcpMonitorBridge)context.getBean("pcpMonitorBridge");
-/
+//
 //          PcpMmvWriter writer = (PcpMmvWriter)context.getBean("mmvPcpWriter");
 //          // keep the prefix (remove noprefix flag) and monitor the PID
 //          writer.setFlags(EnumSet.of(MmvFlag.MMV_FLAG_PROCESS));
